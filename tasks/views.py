@@ -54,7 +54,7 @@ def signup(request):
                     "password": user.password,  # Nota: esta ya está hasheada
                     "start_date": datetime.utcnow().isoformat()
                 }
-                r.execute_command('JSON.SET', session_key, '.', json.dumps(session_data))
+                r.execute_command('HSET', session_key, '.', json.dumps(session_data))
                 
                 return redirect('home')
             except IntegrityError:
@@ -88,7 +88,7 @@ def signin(request):
             }
             
             # Almacenar el hash en Redis
-            r.hset(session_key, mapping=session_data)
+            r.execute_command('HSET', session_key, '.', json.dumps(session_data))
             
             return redirect('home')
 
