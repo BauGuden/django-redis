@@ -1,0 +1,8 @@
+Django
+djangorestframework
+django-cors-headers
+psycopg2
+Pillow>=10.0
+django-environ
+django-redis
+redis

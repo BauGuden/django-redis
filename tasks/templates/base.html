@@ -1,0 +1,157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONS -->
+    
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+      /* SI NO CONECTA LOS ESTILOS DEL PROYECTO
+        PUEDES PEGAR AQUI TODO LO Q ESTA STYLE.CSS EN LA CARPETA DE STATIC */
+    </style>
+
+
+    <title>SISTEMA DE GESTION</title>
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="sidebar">
+        <div class="menu-btn">
+          <i class="ph-bold ph-caret-left"></i>
+        </div>
+        <div class="head">
+          <div class="user-img">
+            <img src="{% static 'img/logo.png' %}" alt="" />
+          </div>
+          <div class="user-details">
+            <p class="title">SISTEMA DE GESTION</p>
+            <p class="name">"BD III"</p>
+          </div>
+        </div>
+        <div class="nav">
+          
+          {% if user.is_authenticated %}
+          <div class="menu">
+            <p class="title">Menu</p>
+            <ul>
+              <li class="{% if request.path == '/' %}active{% endif %}">
+                <a href="/">
+                  <i class="icon ph-bold ph-house-simple"></i>
+                  <span class="text">Inicio</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+            
+          {% else %}
+          <div class="menu">
+            <p class="title">Inicia Sesion</p>
+            <ul>
+
+              <li class="{% if request.path == '/' %}active{% endif %}">
+                <a href="/">
+                  <i class="icon ph-bold ph-house-simple"></i>
+                  <span class="text">Inicio</span>
+                </a>
+              </li>
+              
+          
+              <li class="{% if request.path == '/signin/' %}active{% endif %}">
+                <a href="{% url 'signin' %}">
+                  <i class="icon ph-bold ph-user"></i>
+                  <span class="text">Login</span>
+                </a>
+              </li>
+          
+              <li class="{% if request.path == '/signup/' %}active{% endif %}">
+                <a href="{% url 'signup' %}">
+                  <i class="icon ph-bold ph-user"></i>
+                  <span class="text">Register</span>
+                  <i class="arrow ph-bold ph-caret-simple"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+          <div class="menu">
+            <p class="title">Settings</p>
+            <ul>
+              <li class="{% if request.path == '/settings/' %}active{% endif %}">
+                <a href="#">
+                  <i class="icon ph-bold ph-gear"></i>
+                  <span class="text">Settings</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="menu">
+          <p class="title">Account</p>
+          <ul>
+            <li class="{% if request.path == '/help/' %}active{% endif %}">
+              <a href="#">
+                <i class="icon ph-bold ph-info"></i>
+                <span class="text">Help</span>
+              </a>
+            </li>
+            <li class="{% if request.path == '/logout/' %}active{% endif %}">
+              <a href="/logout/">
+                <i class="icon ph-bold ph-sign-out"></i>
+                <span class="text">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {% endif %}
+      </div>
+
+      <!--CONTENIDO-->
+      <div class="credits">
+        {% block content %}
+            <!-- Tu contenido aquí -->
+        {% endblock %}
+
+      </div>
+    
+    </div>
+
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+    <!-- Jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+      integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Obtener todas las etiquetas <a> dentro del menú
+      document.addEventListener('DOMContentLoaded', function () {
+        const currentPath = window.location.pathname; // Obtener la URL actual
+        const menuLinks = document.querySelectorAll('.menu ul li a');
+    
+        // Iterar sobre cada enlace y verificar si coincide con la ruta actual
+        menuLinks.forEach(link => {
+          if (link.getAttribute('href') === currentPath) {
+            link.parentElement.classList.add('active'); // Agregar clase "active" al <li>
+          }
+        });
+      });
+    </script>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

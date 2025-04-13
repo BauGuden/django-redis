@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="form-box">
+    <!-- Contenedor de registro -->
+    <div class="register-container" id="register">
+        <div class="top">
+            <span>¿Ya tienes cuenta? <a href="{% url 'signin' %}">Iniciar sesión</a></span>
+            <header class="form-title">Registrarse</header>
+            <p class="form-subtitle">Crea una cuenta y disfruta de nuestros servicios</p>
+        </div>
+        <form action="#" method="post" aria-label="Formulario de registro">
+            {% csrf_token %}
+            <p>{{ error }}</p>
+
+            <!-- Campo de nombre de usuario o correo -->
+            <div class="input-box">
+                <label for="username-reg" class="sr-only">Nombre de usuario o Correo Electrónico</label>
+                <input 
+                    type="text" 
+                    class="input-field" 
+                    placeholder="Nombre de usuario o Correo Electrónico" 
+                    name="username" 
+                    id="username-reg" 
+                    required 
+                    aria-required="true">
+                <i class="bx bx-user" aria-hidden="true"></i>
+                <div class="field-info">
+                    <span>Requerido: máximo 150 caracteres, solo letras, dígitos y @/./+/-/_.</span>
+                </div>
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="input-box">
+                <label for="password1" class="sr-only">Contraseña</label>
+                <input 
+                    type="password" 
+                    class="input-field" 
+                    placeholder="Ingrese su contraseña" 
+                    name="password1" 
+                    id="password1" 
+                    required 
+                    aria-required="true">
+                <i class="bx bx-envelope" aria-hidden="true"></i>
+                <div class="field-info">
+                    <span>
+                        Tu contraseña debe tener al menos 8 caracteres, no ser demasiado similar a tu información personal, no ser comúnmente usada ni completamente numérica.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de confirmación de contraseña -->
+            <div class="input-box">
+                <label for="password2" class="sr-only">Confirmar contraseña</label>
+                <input 
+                    type="password" 
+                    class="input-field" 
+                    placeholder="Confirme su contraseña" 
+                    name="password2" 
+                    id="password2" 
+                    required 
+                    aria-required="true">
+                <i class="bx bx-lock-alt" aria-hidden="true"></i>
+                <div class="field-info">
+                    <span>Ingresa la misma contraseña que antes, para verificación.</span>
+                </div>
+            </div>
+
+            <!-- Botón de registro -->
+            <div class="input-box">
+                <button type="submit" class="submit" aria-label="Registrarse">Registrarse</button>
+            </div>
+
+            <!-- Opciones adicionales -->
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check">Recuérdame</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Términos y condiciones</a></label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

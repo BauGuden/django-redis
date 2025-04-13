@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="form-box">
+    <!-- Contenedor de inicio de sesión -->
+    <div class="login-container" id="login">
+        <div class="top">
+            <span>¿No tienes una cuenta? <a href="{% url 'signup' %}">Regístrate</a></span>
+            <header class="form-title">Iniciar sesión</header>
+            <p class="form-subtitle">Bienvenido, ingresa tus datos para continuar</p>
+        </div>
+        <form action="" method="post" aria-label="Formulario de inicio de sesión">
+            {% csrf_token %}
+            <p>{{ error }}</p>
+
+            <!-- Campo de nombre de usuario -->
+            <div class="input-box">
+                <label for="username" class="sr-only">Nombre de usuario</label>
+                <input 
+                    type="text" 
+                    class="input-field" 
+                    placeholder="Nombre de usuario" 
+                    name="username" 
+                    id="username" 
+                    required 
+                    aria-required="true">
+                <i class="bx bx-user" aria-hidden="true"></i>
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="input-box mt-4">
+                <label for="password" class="sr-only">Contraseña</label>
+                <input 
+                    type="password" 
+                    class="input-field" 
+                    placeholder="Contraseña" 
+                    name="password" 
+                    id="password" 
+                    required 
+                    aria-required="true">
+                <i class="bx bx-lock-alt" aria-hidden="true"></i>
+            </div>
+
+            <!-- Botón de inicio de sesión -->
+            <div class="input-box mt-4">
+                <button type="submit" class="submit" aria-label="Iniciar sesión">Iniciar sesión</button>
+            </div>
+
+            <!-- Opciones adicionales -->
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check">Recuérdame</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">¿Olvidaste tu contraseña?</a></label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
