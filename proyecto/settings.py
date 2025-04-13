@@ -87,7 +87,7 @@ DATABASES = {
 }
 
 # Tiempo de vida de la cookie de sesión en segundos (300 segundos = 5 minutos)
-SESSION_COOKIE_AGE = 300  # expire de redis
+SESSION_COOKIE_AGE = 120  # expire de redis
 # Indica si la sesión debe expirar al cerrar el navegador. False significa que la sesión persiste.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
 
