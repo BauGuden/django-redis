@@ -14,7 +14,7 @@ Este proyecto utiliza el framework Django para construir aplicaciones web robust
 
 1. Clona este repositorio:
     ```bash
-    git clone 
+    git clone https://github.com/BauGuden/django-redis
     ```
 
 2. Crea y activa un entorno virtual:
